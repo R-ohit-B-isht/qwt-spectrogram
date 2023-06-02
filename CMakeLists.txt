@@ -11,6 +11,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
+find_path(QWTDIR qwt.h HINTS /home/gsoc/radioconda/pkgs/qwt-6.2.0-hc45b483_5/include)
+find_library(QWTLIBRARY qwt  /home/gsoc/radioconda/pkgs/qwt-6.2.0-hc45b483_5/lib)
+
+include_directories(${QWTDIR})
 
 set(PROJECT_SOURCES
         main.cpp
@@ -31,8 +35,8 @@ add_executable(qwtgrsp
 
 
 #target_link_libraries(qwtgrsp PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(qwtgrsp Qt5::Widgets)
-target_link_libraries(qwtgrsp qwt-qt5)
+target_link_libraries(qwtgrsp Qt5::Widgets ${QWTLIBRARY})
+#target_link_libraries(qwtgrsp qwt-qt5)
 
 
 
